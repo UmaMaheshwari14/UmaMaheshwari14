@@ -1,0 +1,10 @@
+def sort_tuple(list1):
+    llen=len(list1)
+    for i in range(0,llen):
+        for j in range(0,llen-i-1):
+            if (list1[j][-1]>list1[j+1][-1]):
+                temp=list1[j]
+                list1[j]=list1[j+1]
+                list1[j+1]=temp
+    return list1
+ 
