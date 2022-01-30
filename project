@@ -1,0 +1,68 @@
+class food_delivery:
+    
+    def __init__(self,login_id,password):
+        self.login_id=login_id
+        self.password=password
+        self.login_details={}
+        self.order_info={}
+    def login_to_food(self):
+        login_id=input("please enter your login_id:")
+        password=input("please enter your password:")
+        if login_id in self.login_details:
+            print("you are successfullly logged in to ur portal")
+            choi=int(input("1.place new order\n2.update profile\n3.exit\n select ur option:"))
+            if choi==1:
+                food.place_new_order()
+            elif choi==2:
+                food.update_profile()
+            elif choi==3:
+                print("ok bye thank you!!")
+        else:
+            print("entered login_id doesn't exist")
+            print("please register to the application")
+            full_name=input("please enter your full name:")
+            phone_number=input("please enter ur mobile number:")
+            login_id=input("please enter ur email:")
+            password=input("create ur password in 8 characters:")
+            address=input("please give ur address:")
+            details={}
+            details["full_name"]=full_name
+            details["phone_number"]=phone_number
+            details["password"]=password
+            details["address"]=address
+            self.login_details[login_id]=details
+    def place_new_order(self):
+        print("here are the food items available:")
+        food_list=["tandoorichicken:(4pieces)[INR240]","veganburger:(1piece)[INR320]","trufflecake:(500gm)[INR500]"]
+        for i in food_list:
+            print(i,end="\n")
+        print("select ur food from the list")
+        select=input()
+        res=[int(j) for j in select if j.isdigit() ]
+        order_list=[]
+        for re in res:
+            print(food_list[re])
+            order_list.append(food_list[re])
+            order_info[login_id]=order_list    
+        choice=int(input("1.place the order\n2.No\n choose your choice:"))
+        if choice==1:
+            print('order placed')
+        else:
+            print('ur order not placed')
+    def update_profile(self):
+        print("give the no of things u want to update:")
+        details.update({"newone":input()})
+        print(details)
+                
+food=food_delivery(login_id,password)
+while True:
+    food.login_to_food()
+
+
+
+
+            
+       
+        
+        
+    
