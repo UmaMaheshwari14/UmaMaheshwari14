@@ -1,0 +1,122 @@
+class Theatre:
+    def __init__(self,rows,columns):
+        self.rows=rows
+        self.columns=columns
+        self.booking_details={}
+    def show_seats(self):    
+        for row in range(rows+1):
+            for col in range(columns+1):
+                if row==0:
+                    if col==0:
+                        print(" ",end=' ')
+                    else:
+                        print(col,end=' ')
+                else:
+                    if col==0:
+                        print(row,end=' ')
+                    else:
+                        seat_id=str(row)+str(col)
+                        if seat_id in self.booking_details:
+                            print('B',end=' ')
+                        else:
+                            print('s',end=' ')
+            print()
+    def buy_ticket(self):
+        row=int(input('please enter the row in which you want to book the ticket'))
+        col=int(input('please enter the column in which you want to book the ticket'))
+        seat_id=str(row)+str(col)
+        if seat_id in self.booking_details:
+            print('seat is already booked')
+            return
+        total_tickets=rows*columns
+        if total_tickets<=60:
+            price=10
+        else:
+            half_factor=rows//2
+            if row<=half_factor:
+                price=10
+            else:
+                price=8
+        should_book=int(input(f"here is the price for {row}and{col}is{price}\ndo you want to buy a ticket?\n1.yes\n2.no\n please select ur choice: "))
+        if should_book==1:
+            print('please give your details')
+            name=input('enter your name')
+            age=input('enter your age')
+            mobile_no=input('enter your mobile number')
+            gender=input('enter your gender')
+            details={}
+            details['name']=name
+            details['age']=age
+            details['mobile_no']=mobile_no
+            details['gender']=gender
+            details['price']=price
+            self.booking_details[seat_id]=details
+            print('ticket booked successfully')
+        else:
+            print('you have not decided to book a ticket')
+    def show_user_details(self):
+        row=input('enter the row for which you want to see the details:')
+        col=input('enter the column for which you want to see the details:')
+        seat_id=str(row)+str(col)
+        if seat_id in self.booking_details:
+            details=self.booking_details[seat_id]
+            print(f"here is the details belongs to {row}and{col} you have selected")
+            print(f"name={details['name']}")
+            print(f"age={details['age']}")
+            print(f"mobile_no={details['mobile_no']}")
+            print(f"gender={details['gender']}")
+            print(f"ticket is booked for the price {details['price']}")
+        else:
+            print('ticket is not booked yet')
+    def show_statistics(self):
+        purchased_tickets=len(self.booking_details)
+        total_tickets=rows*columns
+        percentage_of_tickets_booked=(purchased_tickets/total_tickets)*100
+        current_income=0
+        for seat_id in self.booking_details:
+            details=self.booking_details[seat_id]
+            current_income+=details['price']
+        total_income=0
+        total_tickets=rows*columns
+        if total_tickets<=60:
+            price=10
+            total_income+=total_tickets*price
+        else:
+            half_factor=rows//2
+            if row<=half_factor:
+                price=10
+                total_income+=half_factor*columns*price
+            else:
+                price=8
+                rem_rows=rows-half_factor
+                total_income+=rem_rows*columns*price
+        print('total income is',total_income)
+        print('current_income is',current_income)
+        print('percentage of tickets booked is',round(percentage_of_tickets_booked,2))
+        print('purchased tickets are', purchased_tickets)
+rows=int(input('please enter the number of rows '))
+columns=int(input('please enter the number of columns'))
+theatre=Theatre(rows,columns)
+while True:
+    choice=int(input("1.show the seats\n2.buy a ticket\n3.show booked user details\n4.show overall statistics\n0.Exit\n please enter your choice:"))
+    if choice==1:
+        theatre.show_seats()
+    elif choice==2:
+        theatre.buy_ticket()
+    elif choice==3:
+        theatre.show_user_details()
+    elif choice==4:
+        theatre.show_statistics()
+    elif choice==0:
+        print('ok bye thankyou!!')
+        break
+    else:
+        print('invalid option please enter a valid option')
+        
+            
+
+                      
+            
+
+            
+        
