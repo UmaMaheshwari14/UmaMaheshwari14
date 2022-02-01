@@ -1,10 +1,10 @@
 class food_delivery:
-    
     def __init__(self,login_id,password):
         self.login_id=login_id
         self.password=password
         self.login_details={}
         self.order_info={}
+        self.details={}
     def login_to_food(self):
         login_id=input("please enter your login_id:")
         password=input("please enter your password:")
@@ -25,12 +25,12 @@ class food_delivery:
             login_id=input("please enter ur email:")
             password=input("create ur password in 8 characters:")
             address=input("please give ur address:")
-            details={}
-            details["full_name"]=full_name
-            details["phone_number"]=phone_number
-            details["password"]=password
-            details["address"]=address
-            self.login_details[login_id]=details
+            self.details={}
+            self.details["full_name"]=full_name
+            self.details["phone_number"]=phone_number
+            self.details["password"]=password
+            self.details["address"]=address
+            self.login_details[login_id]=self.details
     def place_new_order(self):
         print("here are the food items available:")
         food_list=["tandoorichicken:(4pieces)[INR240]","veganburger:(1piece)[INR320]","trufflecake:(500gm)[INR500]"]
@@ -43,7 +43,7 @@ class food_delivery:
         for re in res:
             print(food_list[re])
             order_list.append(food_list[re])
-            order_info[login_id]=order_list    
+            self.order_info[self.login_id]=order_list    
         choice=int(input("1.place the order\n2.No\n choose your choice:"))
         if choice==1:
             print('order placed')
@@ -51,12 +51,21 @@ class food_delivery:
             print('ur order not placed')
     def update_profile(self):
         print("give the no of things u want to update:")
-        details.update({"newone":input()})
-        print(details)
+        self.details.update({"newone":input()})
+        print(self.details)
                 
-food=food_delivery(login_id,password)
+
+            
+            
+
+food=food_delivery('login_id','password')
 while True:
-    food.login_to_food()
+    choice=int(input("1.login to the portal\n2.exit\nplease select ur option:"))
+    if choice==1:
+        food.login_to_food()
+    elif choice==2:
+        print("ok bye thank you!!")
+        break
 
 
 
