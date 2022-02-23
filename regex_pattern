@@ -1,0 +1,7 @@
+source_text=input()
+regex_pattern=input()
+for i in source_text:
+    if i in regex_pattern:
+        print(i,end=' ')
+
+
